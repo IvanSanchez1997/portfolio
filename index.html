@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Desarrollador Junior</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Fira Code", monospace;
+      background: #0f0f0f;
+      color: #eaeaea;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      background: #111;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1abc9c;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 1.3rem;
+      color: #1abc9c;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      color: #eaeaea;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #1abc9c;
+    }
+
+    /* Botón hamburguesa */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #1abc9c;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 1rem;
+        border-left: 1px solid #1abc9c;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #1abc9c;
+    }
+
+    /* Hero */
+    #hero {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: radial-gradient(circle at center, #1abc9c22 0%, transparent 70%);
+      border-radius: 12px;
+    }
+
+    #hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1abc9c;
+    }
+
+    #hero p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: auto;
+      color: #bbb;
+    }
+
+    /* Proyectos */
+    .proyectos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #222;
+      box-shadow: 0 0 15px rgba(26,188,156,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px rgba(26,188,156,0.2);
+    }
+
+    .card h3 {
+      margin-bottom: 0.8rem;
+      color: #1abc9c;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .github-link {
+      margin-left: 10px;
+    }
+
+    .github-icon {
+      vertical-align: middle;
+      transition: fill 0.3s;
+    }
+
+    .card:hover .github-icon {
+      fill: #1abc9c;
+    }
+
+    /* Contacto */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin: auto;
+      margin-bottom: 2rem;
+    }
+
+    input, textarea {
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #222;
+      color: #fff;
+      outline: none;
+      border: 1px solid #333;
+      transition: border 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border: 1px solid #1abc9c;
+    }
+
+    button {
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      background: #1abc9c;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #16a085;
+      transform: scale(1.03);
+    }
+
+    .contact-info {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-info a {
+      color: #1abc9c;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.2rem;
+      margin-top: 2rem;
+      background: #111;
+      color: #888;
+      border-top: 1px solid #1abc9c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>&lt;DevPortfolio /&gt;</h1>
+    <span class="menu-toggle">☰</span>
+    <nav>
+      <ul>
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h2>Hola, soy Iván Sánchez 👨‍💻</h2>
+    <p>Desarrollador Junior. Me gusta construir experiencias digitales modernas, minimalistas y funcionales usando tecnologías web, aunque también me he tenido que adaptar a otras en el mundo profesional: <strong>PHP, Laravel, JavaScript, Java, SQL</strong>.</p>
+  </section>
+
+  <section id="proyectos">
+    <h2>🚀 Proyectos</h2>
+    <div class="proyectos">
+
+      <div class="card">
+        <h3>
+          EntrenadorPersonal
+          <a href="https://github.com/IvanSanchez1997/Entrenadorpersonal" target="_blank" class="github-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#eaeaea" viewBox="0 0 24 24" class="github-icon">
+              <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.29 3.438 9.77 8.207 11.36.6.11.793-.26.793-.58v-2.02c-3.338.73-4.04-1.61-4.04-1.61-.546-1.39-1.333-1.76-1.333-1.76-1.09-.75.083-.74.083-.74 1.205.09 1.84 1.24 1.84 1.24 1.07 1.83 2.807 1.3 3.493.99.107-.78.417-1.31.76-1.61-2.665-.3-5.466-1.34-5.466-5.95 0-1.31.468-2.38 1.236-3.22-.124-.3-.536-1.52.117-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.653 1.64.24 2.86.118 3.16.77.84 1.236 1.91 1.236 3.22 0 4.62-2.804 5.64-5.475 5.94.43.37.814 1.1.814 2.23v3.3c0 .32.193.69.8.57C20.565 22.27 24 17.8 24 12.5 24 5.87 18.63.5 12 .5Z"/>
+            </svg>
+          </a>
+        </h3>
+        <p>Un sitio donde dar importancia a entrenadores personales, hecho con Laravel, utilizando Blade, Vite.js y ChartJS.</p>
+        <p><em>Afiancé la gestión del backend</em></p>
+      </div>
+
+      <div class="card">
+        <h3>
+          csbro
+          <a href="https://github.com/IvanSanchez1997/csbro" target="_blank" class="github-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#eaeaea" viewBox="0 0 24 24" class="github-icon">
+              <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.29 3.438 9.77 8.207 11.36.6.11.793-.26.793-.58v-2.02c-3.338.73-4.04-1.61-4.04-1.61-.546-1.39-1.333-1.76-1.333-1.76-1.09-.75.083-.74.083-.74 1.205.09 1.84 1.24 1.84 1.24 1.07 1.83 2.807 1.3 3.493.99.107-.78.417-1.31.76-1.61-2.665-.3-5.466-1.34-5.466-5.95 0-1.31.468-2.38 1.236-3.22-.124-.3-.536-1.52.117-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.653 1.64.24 2.86.118 3.16.77.84 1.236 1.91 1.236 3.22 0 4.62-2.804 5.64-5.475 5.94.43.37.814 1.1.814 2.23v3.3c0 .32.193.69.8.57C20.565 22.27 24 17.8 24 12.5 24 5.87 18.63.5 12 .5Z"/>
+            </svg>
+          </a>
+        </h3>
+        <p>Encuentra tu compañero de juego y chatea en tiempo real, hecho con Laravel, utilizando Livewire, Reverb y Vite.js.</p>
+        <p><em>Aprendí diseño con Tailwind CSS y tecnología Broadcasting</em></p>
+      </div>
+
+      <div class="card">
+        <h3>
+          Señor de los anillos
+          <a href="https://github.com/IvanSanchez1997/SenorDeLosAnillos" target="_blank" class="github-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#eaeaea" viewBox="0 0 24 24" class="github-icon">
+              <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.29 3.438 9.77 8.207 11.36.6.11.793-.26.793-.58v-2.02c-3.338.73-4.04-1.61-4.04-1.61-.546-1.39-1.333-1.76-1.333-1.76-1.09-.75.083-.74.083-.74 1.205.09 1.84 1.24 1.84 1.24 1.07 1.83 2.807 1.3 3.493.99.107-.78.417-1.31.76-1.61-2.665-.3-5.466-1.34-5.466-5.95 0-1.31.468-2.38 1.236-3.22-.124-.3-.536-1.52.117-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.653 1.64.24 2.86.118 3.16.77.84 1.236 1.91 1.236 3.22 0 4.62-2.804 5.64-5.475 5.94.43.37.814 1.1.814 2.23v3.3c0 .32.193.69.8.57C20.565 22.27 24 17.8 24 12.5 24 5.87 18.63.5 12 .5Z"/>
+            </svg>
+          </a>
+        </h3>
+        <p>Tira tus dados y conoce el resultado en consola, hecho con Java.</p>
+        <p><em>Consolidé la Programación Orientada a Objetos</em></p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>📩 Contáctame</h2>
+
+    <!-- Información directa de contacto -->
+    <div class="contact-info">
+      <p>📧 Correo: <a href="mailto:ivansanchezs.1997@gmail.com">ivansanchezs.1997@gmail.com</a></p>
+      <p>📱 Teléfono: <a href="tel:+34659982859">+34 659 982 859</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Iván Sánchez | Desarrollador Junior</p>
+  </footer>
+
+</body>
+</html>
